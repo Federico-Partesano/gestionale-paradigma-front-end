@@ -1,0 +1,57 @@
+{
+  "parser": "@typescript-eslint/parser",
+  /* eslint-disable */
+  // "project": "gestionale-paradigma/doar-react/tsconfig.json",
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "airbnb-typescript",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "project": "gestionale-paradigma/doar-react/tsconfig.json",
+    "ecmaVersion": 12
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
+  "rules": {
+    "prefer-const": "error",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "prettier/prettier": "error",
+    "import/prefer-default-export": "off",
+    "no-alert": "off",
+    "no-restricted-globals": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": ["variable"],
+        "format": ["camelCase", "PascalCase", "UPPER_CASE"],
+        "leadingUnderscore": "allow"
+      }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }]
+  },
+  "overrides": [
+    // Override some TypeScript rules just for .js files
+    {
+      "files": ["*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
+}

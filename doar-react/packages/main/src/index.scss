@@ -1,0 +1,61 @@
+@import "../../../node_modules/tippy.js/dist/tippy.css";
+@import "./assets//styles//spaces.scss";
+@import "./assets//styles//flex.scss";
+@import "./assets//styles//mixin.scss";
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #d7e5ff;
+    border-radius: 0.625rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #86affb;
+    border-radius: 0.625rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #4385ff;
+}
+
+.chakra-menu__menu-list {
+    &::-webkit-scrollbar {
+        width: 0.25rem;
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+.text-end {
+    text-align: end;
+}
+
+.font-weight-900 {
+    font-weight: 900;
+}
+.font-weight-700 {
+    font-weight: 700;
+}
+
+.color-red {
+    color: red;
+}
+.color-yellow {
+    color: yellow;
+}
+
+.width-50 {
+    width: 50%;
+}
+
+.font-italic {
+    font-style: italic;
+}

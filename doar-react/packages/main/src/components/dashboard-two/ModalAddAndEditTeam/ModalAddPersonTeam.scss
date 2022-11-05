@@ -1,0 +1,26 @@
+.container-list-add-person-team {
+    margin-top: 0.6rem;
+    border: 2px solid rgba($color: #85affb, $alpha: 0.3);
+    border-radius: 0.4rem;
+    height: 14rem;
+    overflow-y: auto;
+    .container-person-list {
+        transition: background-color 0.1s ease-in;
+        cursor: pointer;
+        &:hover {
+            background-color: rgba($color: #85affb, $alpha: 0.3);
+        }
+        .container-person {
+            display: flex;
+            justify-content: space-between;
+            .person {
+                display: flex;
+                gap: 0.4rem;
+                align-items: center;
+            }
+        }
+    }
+    .selected-person {
+        background-color: rgba($color: #85affb, $alpha: 0.2);
+    }
+}

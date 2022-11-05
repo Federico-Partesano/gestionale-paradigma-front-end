@@ -1,0 +1,48 @@
+{
+  "name": "doar",
+  "private": true,
+  "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap --use-workspaces",
+    "postbootstrap": "yarn build:components",
+    "start": "lerna run start --parallel",
+    "build": "lerna run build --parallel",
+    "test": "CI=true lerna run test --parallel",
+    "typecheck": "lerna run typecheck --parallel",
+    "lint": "lerna run lint --parallel",
+    "lint:fix": "lerna run lint:fix --parallel",
+    "start:main": "lerna exec --scope=\"@doar/main\" yarn start",
+    "build:main": "lerna exec --scope=\"@doar/main\" yarn build",
+    "serve:main": "lerna exec --scope=\"@doar/main\" yarn serve",
+    "test:main": "CI=true lerna run test --scope=\"@doar/main\" ",
+    "lint:main": "lerna run lint --scope=\"@doar/main\" ",
+    "lint:fix:main": "lerna run lint:fix --scope=\"@doar/main\" ",
+    "start:components": "lerna run start --scope=\"@doar/components\" ",
+    "build:components": "lerna exec --scope=\"@doar/components\" yarn build",
+    "test:components": "CI=true lerna run test --scope=\"@doar/components\" ",
+    "lint:components": "lerna run lint --scope=\"@doar/components\" ",
+    "lint:fix:components": "lerna run lint:fix --scope=\"@doar/components\" ",
+    "storybook": "lerna exec --scope=\"@doar/components\" yarn storybook ",
+    "build-storybook": "lerna exec --scope=\"@doar/components\" yarn build-storybook ",
+    "serve-storybook": "lerna exec --scope=\"@doar/components\" yarn serve-storybook ",
+    "clean": "lerna run clean && rimraf node_modules",
+    "clean:update": "lerna clean && lerna bootstrap",
+    "clean-root": "rimraf node_modules"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "lerna": "^4.0.0",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.4"
+  }
+}

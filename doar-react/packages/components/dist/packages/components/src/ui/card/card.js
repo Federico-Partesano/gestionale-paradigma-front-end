@@ -1,0 +1,1 @@
+import{__rest as r,__assign as o}from"../../../../../node_modules/tslib/tslib.es6.js";import{jsx as s}from"react/jsx-runtime";import e from"clsx";import{StyledCard as l}from"./style.js";var c=function(c){var m=c.children,t=c.className,a=c.color,i=r(c,["children","className","color"]);return s(l,o({className:e(t,"card")},i,{$color:a},{children:m}))};export{c as default};

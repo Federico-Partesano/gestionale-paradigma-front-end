@@ -1,0 +1,1 @@
+import{__rest as r,__assign as s}from"../../../../../node_modules/tslib/tslib.es6.js";import{jsx as t}from"react/jsx-runtime";import a from"clsx";import{StyledCardLink as e}from"./style.js";var l=function(l){var m=l.children,i=l.className,o=l.path,c=r(l,["children","className","path"]);return t(e,s({path:o,className:a(i,"card-link")},c,{children:m}))};export{l as default};

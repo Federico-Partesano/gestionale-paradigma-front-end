@@ -1,0 +1,30 @@
+$spacer: 1rem;
+$spacers: (
+    0: 0,
+    1: $spacer * 0.25,
+    2: $spacer * 0.5,
+    3: $spacer,
+    4: $spacer * 1.5,
+    5: $spacer * 3,
+);
+
+$spaces: (
+    p: "padding",
+    ps: "padding-left",
+    pt: "padding-top",
+    pe: "padding-right",
+    pb: "padding-bottom",
+    m: "margin",
+    ms: "margin-left",
+    mt: "margin-top",
+    me: "margin-right",
+    mb: "margin-bottom",
+);
+
+@each $name, $space in $spacers {
+    @each $spaceName, $spaceType in $spaces {
+        .#{$spaceName}-#{$name} {
+            #{unquote($spaceType)}: $space;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "extends": ["../.eslintrc-react.json"],
+    "parserOptions": {
+        "project": "tsconfig.json"
+    },
+    "rules": {
+        "@typescript-eslint/no-misused-promises": [
+            "error",
+            {
+              "checksConditionals": false,
+              "checksVoidReturn": false
+            }
+        ]
+    }
+}

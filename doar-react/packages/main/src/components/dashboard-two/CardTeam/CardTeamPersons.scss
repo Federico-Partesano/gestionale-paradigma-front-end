@@ -1,0 +1,16 @@
+.container-person {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.container-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .container-options {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+}

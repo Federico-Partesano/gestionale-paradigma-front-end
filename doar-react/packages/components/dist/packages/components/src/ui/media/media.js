@@ -1,0 +1,1 @@
+import{__rest as s,__assign as r}from"../../../../../node_modules/tslib/tslib.es6.js";import{jsx as e}from"react/jsx-runtime";import a from"clsx";import{StyledMedia as m}from"./style.js";var l=function(l){var t=l.children,i=l.as,o=l.className,c=s(l,["children","as","className"]);return e(m,r({className:a(o,"media"),as:i,$el:i},c,{children:t}))};export{l as default};

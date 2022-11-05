@@ -1,0 +1,24 @@
+.table-sectors {
+    table-layout: fixed;
+    width: 100%;
+
+    .th {
+        background: white;
+        position: sticky;
+        top: 0; /* Don't forget this, required for the stickiness */
+        height: 2rem;
+    }
+
+    .td {
+        height: 42px;
+        border-bottom: 1px solid #e8f1fc;
+    }
+
+    .table-field-name {
+        font-weight: 500;
+        margin-bottom: 0px;
+        font-size: 13px;
+        text-transform: capitalize;
+        padding-left: 0.2rem;
+    }
+}

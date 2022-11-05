@@ -1,0 +1,10 @@
+Version 2.0.1 - 11 October 22  
+============================
+
+1. Fixed: Minor CSS Issues
+2. Fixed: Separated theme slices from UI slices
+
+Version 1.0.0 - 7 June 2021
+===================================
+
+1. Initial release

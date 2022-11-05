@@ -1,0 +1,1 @@
+import{__rest as o,__assign as r}from"../../../../../node_modules/tslib/tslib.es6.js";import{jsx as e}from"react/jsx-runtime";import t from"../button/button.js";var l=function(l){var n=l.children,d=o(l,["children"]);return e(t,r({},d,{children:n}))};l.defaultProps={label:"DropdownToggle",className:"dropdown-toggle"},l.displayName="DropdownToggle";export{l as default};

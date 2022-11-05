@@ -1,0 +1,13 @@
+{
+    "extends": "../tsconfig.react.json",
+    "compilerOptions": {
+        "composite": true,
+        "noFallthroughCasesInSwitch": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "baseUrl": ".",
+        "outDir": "dist",
+        "downlevelIteration": true,
+    },
+    "include": ["src", "src/*", "src/**/*", "craco.config.js"]
+}

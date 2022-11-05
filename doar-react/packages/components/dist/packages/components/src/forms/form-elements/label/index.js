@@ -1,0 +1,1 @@
+import{__rest as r,__assign as l}from"../../../../../../node_modules/tslib/tslib.es6.js";import{jsx as e}from"react/jsx-runtime";import m from"clsx";import{StyledLabel as s}from"./style.js";var t=function(t){var o=t.children,a=t.htmlFor,i=t.className,c=r(t,["children","htmlFor","className"]);return e(s,l({htmlFor:a,className:m(i,"label")},c,{children:o}))};export{t as default};

@@ -1,0 +1,53 @@
+.container-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 370px);
+    justify-content: space-between;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        width: 0.25rem;
+        height: 0.25rem;
+    }
+    .table-customers {
+        table-layout: fixed;
+        width: 100%;
+
+        .th {
+            background: white;
+            position: sticky;
+            top: 0; /* Don't forget this, required for the stickiness */
+            height: 3rem;
+        }
+
+        .td {
+            height: 62px;
+            border-bottom: 1px solid #e8f1fc;
+        }
+
+        .table-field-name {
+            font-weight: 500;
+            margin-bottom: 0px;
+            font-size: 13px;
+            text-transform: capitalize;
+            padding-left: 0.2rem;
+        }
+    }
+}
+.text-center {
+    text-align: center;
+}
+.pl-2 {
+    padding-left: 0.4rem;
+}
+.header-title-actions {
+    text-align: end;
+    padding-right: 0.5rem;
+}
+
+.truncate {
+    width: 95%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

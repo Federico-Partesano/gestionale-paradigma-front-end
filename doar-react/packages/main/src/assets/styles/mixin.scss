@@ -1,0 +1,32 @@
+$root-font-size: 16;
+
+@function rem($target, $context: $root-font-size) {
+  @return calc($target / $context) * 1rem;
+}
+
+@function get-rem-from-px($target, $context: $root-font-size) {
+  @return calc($target / $context) * 1rem;
+}
+
+@function get-line-height($line-height) {
+  @return get-rem-from-px($line-height);
+}
+
+@mixin font-style($font-size, $line-height, $font-weight: null) {
+  font-size: get-rem-from-px($font-size);
+  line-height: get-line-height($line-height);
+
+  @if ($font-weight) {
+    font-weight: $font-weight;
+  }
+}
+
+@mixin truncate($max-width: null) {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  @if ($max-width){
+    max-width: rem($max-width);
+  }
+}

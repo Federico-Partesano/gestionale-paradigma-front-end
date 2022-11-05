@@ -1,0 +1,1 @@
+import{__rest as r,__assign as s}from"../../../../../node_modules/tslib/tslib.es6.js";import{jsx as e}from"react/jsx-runtime";import a from"clsx";import{StyledCardHeading as t}from"./style.js";var l=function(l){var m=l.children,i=l.className,o=l.as,c=r(l,["children","className","as"]);return e(t,s({as:o,className:a(i,"card-title")},c,{children:m}))};export{l as default};
