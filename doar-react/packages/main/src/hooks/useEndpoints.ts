@@ -70,6 +70,8 @@ export const useEndpoints = () =>
                 }),
             deleteSkill: (id: string) =>
                 axios.delete<{ message: string }>(`${apiUrl}/skills/${id}`),
+            deleteSector: (id: string) =>
+                axios.delete<{ message: string }>(`${apiUrl}/sectors/${id}`),
             editSkill: (id: string, value: string) =>
                 axios.post<{ message: string }>(`${apiUrl}/skills/${id}`, {
                     value,

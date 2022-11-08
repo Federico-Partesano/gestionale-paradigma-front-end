@@ -35,50 +35,6 @@ const WelcomeArea = () => {
                         wcText="Welcome To Dashboard"
                     />
                 </StyledWelcomeLeft>
-                <StyledWelcomeRight>
-                    <StyledButton
-                        size="sm"
-                        color="white"
-                        hasIcon
-                        mt="10px"
-                        onClick={handleShowSaveModal}
-                    >
-                        <Save />
-                        Save
-                    </StyledButton>
-                    <StyledButton
-                        size="sm"
-                        color="white"
-                        hasIcon
-                        mt="10px"
-                        ml="8px"
-                        onClick={handleShowExportModal}
-                    >
-                        <Upload />
-                        Export
-                    </StyledButton>
-                    <StyledButton
-                        size="sm"
-                        color="white"
-                        hasIcon
-                        mt="10px"
-                        ml={[null, "8px"]}
-                        onClick={handleShowShareModal}
-                    >
-                        <Share2 />
-                        Share
-                    </StyledButton>
-                    <StyledButton
-                        path="#!"
-                        size="sm"
-                        hasIcon
-                        mt="10px"
-                        ml="8px"
-                    >
-                        <Sliders />
-                        Settings
-                    </StyledButton>
-                </StyledWelcomeRight>
             </StyledWelcomeArea>
             <ModalSave show={showSaveModal} onClose={handleShowSaveModal} />
             <ModalExport

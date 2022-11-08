@@ -14,13 +14,14 @@ import {
 import { useState } from "react";
 import { useEndpoints } from "../../../hooks/useEndpoints";
 import { usePersons } from "../../../hooks/usePersons";
-import { useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { Skill } from "../../../models/Skills";
 import ReactSelect from "react-select";
 import { customStyleReactSelectPrimary } from "../../../react-select-styles/primary";
 import { useToast } from "../../../hooks/useToast";
 import { AxiosError } from "axios";
 import axios from "axios";
+import { setValuePersons } from "../../../redux/slices/persons";
 interface IProps {
     show: boolean;
     onClose: () => void;
@@ -56,12 +57,16 @@ type CoolorBadge =
     | "dark";
 const ModalUploadCsv = ({ show, onClose }: IProps) => {
     const { skills: skillsSelector } = useAppSelector(({ skills }) => skills);
+    const { value: valueSearchHeader } = useAppSelector(
+        ({ searchHeader }) => searchHeader
+    );
     const { sectors: sectorsSelector } = useAppSelector(
         ({ sectors }) => sectors
     );
-    const { fetchPersons } = usePersons();
-    const { addNewPerson } = useEndpoints();
+    const { addNewPerson, getPersons } = useEndpoints();
+    const { pagination, query } = useAppSelector(({ persons }) => persons);
     const { showToast } = useToast();
+    const dispatch = useAppDispatch();
     const [arrayCsv, setArrayCsv] = useState<PersonCsv[]>([]);
     const [isUploaded, setIsUploaded] = useState(false);
     const csvFileToArray = (string: string) => {
@@ -123,10 +128,21 @@ const ModalUploadCsv = ({ show, onClose }: IProps) => {
                 return "light";
         }
     };
-    const onCloseModal = () => {
-        onClose();
-        setArrayCsv([]);
-        setIsUploaded(false);
+    const onCloseModal = async () => {
+        try {
+            const { data } = await getPersons({
+                ...pagination,
+                search: valueSearchHeader,
+                ...query,
+            });
+            dispatch(setValuePersons(data));
+        } catch (error) {
+            console.error("error", error);
+        } finally {
+            onClose();
+            setArrayCsv([]);
+            setIsUploaded(false);
+        }
     };
 
     const addNewPersonsFromCsv = async () => {
@@ -165,8 +181,8 @@ const ModalUploadCsv = ({ show, onClose }: IProps) => {
                         })
                 )
             );
+            // eslint-disable-next-line
             if (arrayCsv.every((item) => item?.uploaded)) onCloseModal();
-            await fetchPersons();
         } catch (error) {
             console.error("error", error);
         }

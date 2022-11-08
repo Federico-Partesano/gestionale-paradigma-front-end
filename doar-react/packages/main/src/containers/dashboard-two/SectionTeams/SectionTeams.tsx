@@ -58,6 +58,28 @@ const SectionTeams: FC = () => {
         }
     };
 
+    const getColorBadge = (
+        percentual: number
+    ): { className: string; color: "warning" | "success" | "danger" } => {
+        switch (true) {
+            case percentual === 0:
+                return { className: "", color: "warning" };
+
+            case percentual > 1 && percentual <= 50:
+                return { className: "background-orange", color: "success" };
+
+            case percentual > 50 && percentual <= 99:
+                return {
+                    className: "background-light-green",
+                    color: "success",
+                };
+            case percentual === 100:
+                return { className: "", color: "success" };
+
+            default:
+                return { className: "", color: "danger" };
+        }
+    };
     const RenderTestCard: FC<{ team: Team }> = ({ team }) => {
         return (
             <div className="container-card">
@@ -107,13 +129,8 @@ const SectionTeams: FC = () => {
                 <p className="font-weight-900 text-center mb-0">Work load</p>
                 <p className="text-center mb-1">
                     <Badge
-                        color={
-                            workLoad > 101
-                                ? "danger"
-                                : workLoad > 50
-                                ? "warning"
-                                : "success"
-                        }
+                        className={getColorBadge(workLoad).className}
+                        color={getColorBadge(workLoad).color}
                     >
                         {`${workLoad}%`}
                     </Badge>

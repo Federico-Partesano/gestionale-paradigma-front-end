@@ -1,27 +1,45 @@
 import { useEffect, useState } from "react";
 import { PaginatePersons } from "../models/Person";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { setValuePersons } from "../redux/slices/persons";
+import {
+    setValuePaginationPersons,
+    setValuePersons,
+    setValueQueryPersons,
+} from "../redux/slices/persons";
 import { useEndpoints } from "./useEndpoints";
 
 export interface IQueryPersons {
-    workLoad?: number;
     skills: string[];
+    sector: string;
+    "workload<": number | undefined;
+    "workload>": number | undefined;
 }
 
 export const usePersons = () => {
     const { value } = useAppSelector(({ searchHeader }) => searchHeader);
-    const { persons } = useAppSelector(
+    const { persons, pagination: paginationSelector } = useAppSelector(
         ({ persons: personsSelector }) => personsSelector
     );
     const [loading, setLoading] = useState(false);
-    const [pagination, setPagination] = useState({ limit: 20, page: 1 });
+    const [pagination, setPagination] = useState(
+        paginationSelector || { limit: 20, page: 1 }
+    );
     const dispatch = useAppDispatch();
     const [query, setQuery] = useState<IQueryPersons>({
-        workLoad: undefined,
         skills: [],
+        sector: "",
+        "workload<": undefined,
+        "workload>": undefined,
     });
     const { getPersons } = useEndpoints();
+
+    useEffect(() => {
+        dispatch(setValuePaginationPersons(pagination));
+    }, [pagination]);
+
+    useEffect(() => {
+        dispatch(setValueQueryPersons(query));
+    }, [query]);
 
     const fetchPersons = async (
         options: Partial<Record<string, number | string>> = {}

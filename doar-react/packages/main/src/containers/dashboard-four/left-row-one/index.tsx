@@ -33,10 +33,15 @@ import { Edit, MoreVertical, Slash } from "react-feather";
 import Pagination from "../../../components/Pagination/Pagination";
 import "./index.scss";
 import ModalAddNewSector from "./ModalAddNewSector";
+import { useEndpoints } from "../../../hooks/useEndpoints";
+import { useAppDispatch } from "../../../redux/hooks";
+import { setValueSectors } from "../../../redux/slices/sectors";
 
 const LeftRowOne = () => {
     const [show, setShow] = useState(false);
     const { sectors, fetchSectors, loading, setPagination } = useSectors();
+    const { deleteSector, getSectors } = useEndpoints();
+    const dispatch = useAppDispatch();
     const [selectedSector, setSelectedSector] = useState<Sector>();
     const refTable = useRef<HTMLTableElement>(null);
     const columnHelper = createColumnHelper<Sector & { action: any }>();
@@ -49,6 +54,17 @@ const LeftRowOne = () => {
     useEffect(() => {
         setShow(Boolean(selectedSector));
     }, [selectedSector]);
+
+    const handleDeleteSector = async (_id: string) => {
+        try {
+            await deleteSector(_id);
+            await fetchSectors();
+            const { data } = await getSectors();
+            dispatch(setValueSectors(data));
+        } catch (error) {
+            console.error("error", error);
+        }
+    };
 
     const columns = useMemo(
         () => [
@@ -108,7 +124,7 @@ const LeftRowOne = () => {
                                       ) => {
                                           e.preventDefault();
                                           // eslint-disable-next-line
-                                          //   handleDeleteSkill(skill._id);
+                                          handleDeleteSector(sector._id);
                                       }}
                                       display={["none", "block"]}
                                   >
@@ -157,7 +173,7 @@ const LeftRowOne = () => {
                 )}
                 <StyledHeader>
                     <SectionTitle
-                        title={`Skills ${sectors?.totalDocs || ""}`}
+                        title={`Sectors ${sectors?.totalDocs || ""}`}
                     />
                     <StyledHeaderRight>
                         <Button

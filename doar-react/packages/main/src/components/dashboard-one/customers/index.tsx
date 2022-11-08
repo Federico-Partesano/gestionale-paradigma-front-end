@@ -73,6 +73,29 @@ const Customers: FC<ICustomers> = ({
         refTable.current.children[0].scrollIntoView();
     }, [pagination]);
 
+    const getColorBadge = (
+        percentual: number
+    ): { className: string; color: "warning" | "success" | "danger" } => {
+        switch (true) {
+            case percentual === 0:
+                return { className: "", color: "warning" };
+
+            case percentual > 1 && percentual <= 50:
+                return { className: "background-orange", color: "success" };
+
+            case percentual > 50 && percentual <= 99:
+                return {
+                    className: "background-light-green",
+                    color: "success",
+                };
+            case percentual === 100:
+                return { className: "", color: "success" };
+
+            default:
+                return { className: "", color: "danger" };
+        }
+    };
+
     const columns = useMemo(
         () => [
             columnHelper.accessor((row) => `${row.surname} ${row.name}`, {
@@ -138,6 +161,18 @@ const Customers: FC<ICustomers> = ({
                 ),
                 footer: (info) => info.column.id,
             }),
+            columnHelper.accessor("sector", {
+                header: () => "Sector",
+                cell: (info) => (
+                    // eslint-disable-next-line
+                    <Tippy content={info.getValue()?.value || ""}>
+                        <p className="table-field-name truncate">
+                            {info.getValue()?.value || ""}
+                        </p>
+                    </Tippy>
+                ),
+                footer: (info) => info.column.id,
+            }),
             columnHelper.accessor("workLoad", {
                 header: () => <p className="text-center">Work load</p>,
                 cell: (info) => (
@@ -149,13 +184,8 @@ const Customers: FC<ICustomers> = ({
                         }}
                     >
                         <Badge
-                            color={
-                                info.getValue() > 101
-                                    ? "danger"
-                                    : info.getValue() > 50
-                                    ? "warning"
-                                    : "success"
-                            }
+                            className={getColorBadge(info.getValue()).className}
+                            color={getColorBadge(info.getValue()).color}
                         >
                             {`${info.getValue()}%`}
                         </Badge>

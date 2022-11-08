@@ -29,7 +29,6 @@
             font-weight: 500;
             margin-bottom: 0px;
             font-size: 13px;
-            text-transform: capitalize;
             padding-left: 0.2rem;
         }
     }
@@ -50,4 +49,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.background-orange {
+    background-color: orange;
+}
+.background-light-green {
+    background-color: rgba(104, 231, 36, 0.907);
 }

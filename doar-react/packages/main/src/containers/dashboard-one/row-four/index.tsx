@@ -33,6 +33,10 @@ const RowFour = () => {
     } = usePersons();
     const dispatch = useAppDispatch();
     const { skills: skillsSelector } = useAppSelector(({ skills }) => skills);
+    const { sectors: sectorsSelector } = useAppSelector(
+        ({ sectors }) => sectors
+    );
+    const [labelWorkLoad, setlabelWorkLoad] = useState("Work load");
     useEffect(() => {
         // eslint-disable-next-line
         fetchPersons();
@@ -43,6 +47,32 @@ const RowFour = () => {
         };
         // eslint-disable-next-line
     }, []);
+
+    const optionsWorkLoad = [
+        {
+            label: "All",
+            value: {
+                from: undefined,
+                to: undefined,
+            },
+        },
+        {
+            label: "0>25",
+            value: { from: 0, to: 25 },
+        },
+        {
+            label: "25>50",
+            value: { from: 25, to: 50 },
+        },
+        {
+            label: "50>100",
+            value: { from: 50, to: 100 },
+        },
+        {
+            label: ">100",
+            value: { from: 100, to: undefined },
+        },
+    ] as const;
 
     const onChangePage = (page: number) => {
         setPagination((prev) => ({ ...prev, page }));
@@ -90,31 +120,62 @@ const RowFour = () => {
                         styles={customStyleReactSelectPrimary}
                     />
                 </div>
-                <div className="flex-1 d-flex justify-end">
+                <div className="d-flex gap-2 flex-1 justify-end">
                     <Dropdown className="mb-2">
-                        <DropdownToggle>
-                            {query.workLoad || "Work load"}
-                        </DropdownToggle>
+                        <DropdownToggle>{labelWorkLoad}</DropdownToggle>
                         <DropdownMenu>
                             {React.Children.toArray(
-                                [undefined, 25, 50, 100].map((value) => {
+                                optionsWorkLoad.map(({ label, value }) => {
                                     return (
                                         // eslint-disable-next-line
                                         <DropdownItem
-                                            active={value === query.workLoad}
+                                            active={
+                                                value?.from ===
+                                                query["workload>"]
+                                            }
                                             path="#"
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                setDataQuery("workLoad", value);
+                                                setlabelWorkLoad(label);
+                                                setDataQuery(
+                                                    "workload<",
+                                                    value.to
+                                                );
+                                                setDataQuery(
+                                                    "workload>",
+                                                    value.from
+                                                );
                                             }}
                                         >
-                                            {value || "any"}
+                                            {label}
                                         </DropdownItem>
                                     );
                                 })
                             )}
                         </DropdownMenu>
                     </Dropdown>
+                    <Select
+                        placeholder="Select sector..."
+                        options={
+                            sectorsSelector
+                                ? [
+                                      { label: "All", value: "" },
+                                      ...sectorsSelector.map(
+                                          ({ _id, value }) => ({
+                                              label: value,
+                                              value: _id,
+                                          })
+                                      ),
+                                  ]
+                                : []
+                        }
+                        onChange={(selectedValue) => {
+                            // eslint-disable-next-line
+                            selectedValue?.value !== undefined &&
+                                setDataQuery("sector", selectedValue.value);
+                        }}
+                        styles={customStyleReactSelectPrimary}
+                    />
                 </div>
             </div>
         );
